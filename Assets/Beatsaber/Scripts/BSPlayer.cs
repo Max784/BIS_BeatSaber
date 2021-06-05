@@ -11,11 +11,18 @@ public class BSPlayer : MonoBehaviour
     public bool sabering;
     public int current_index;
     public float time_window = 1.0f;
-    private UpperHandle upperHandle;
+    public UpperHandle upperHandle;
+
+    public BSGamemanager1 gamemanager;
+
+    private AudioSource hitAudio; 
 
     void Awake()
     {
         upperHandle = GameObject.Find("Panto").GetComponent<UpperHandle>();
+        upperHandle.FreeRotation(); 
+
+        hitAudio = gameObject.GetComponent<AudioSource>(); 
     }
 
     public void StartSabering()
@@ -42,6 +49,7 @@ public class BSPlayer : MonoBehaviour
             current_index++;
             if (current_index == level.block_sequence.Count)
             {
+                gamemanager.FinishedLevel();
                 sabering = false;
             }
         }
@@ -58,9 +66,12 @@ public class BSPlayer : MonoBehaviour
             if (sabering_start_time + level.block_sequence[current_index].time - time_window < Time.time)
             {
                 Debug.Log("Yay");
+                level.block_count ++;
+                hitAudio.Play(); 
                 current_index++;
                 if (current_index == level.block_sequence.Count)
                 {
+                    gamemanager.FinishedLevel();
                     sabering = false;
                 }
             }

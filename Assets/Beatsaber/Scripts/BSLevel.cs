@@ -17,9 +17,11 @@ public class BSLevel : MonoBehaviour
     public List<Block> block_sequence;
     public float trace_start_time;
     public int current_index;
+
+    public int block_count;
     public bool tracing;
     public LowerHandle it_handle;
-    public BSGamemanager gamemanager;
+    public BSGamemanager1 gamemanager;
 
 
     public void TraceBlocks()
@@ -27,11 +29,16 @@ public class BSLevel : MonoBehaviour
         trace_start_time = Time.time;
         tracing = true;
         current_index = 0;
+        block_count = 0;
     }
     
+    void Awake(){
+        it_handle = GameObject.Find("Panto").GetComponent<LowerHandle>();
+        it_handle.FreeRotation();    
+    }
     void Start()
     {
-        it_handle = GameObject.Find("Panto").GetComponent<LowerHandle>();
+        
     }
 
     // Update is called once per frame
