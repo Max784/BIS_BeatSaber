@@ -2,14 +2,23 @@
 using System.Collections.Generic;
 using SpeechIO;
 using UnityEngine;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
-public class BSGamemanager2 : BSGamemanager1
+
+public class BSGamemanagerFinal : BSGamemanager1
 {
-    async public override void PlayIntroduction(){
-        await speechOut.Speak("Welcome to the second Level!");
-        await speechOut.Speak("This time there are two blocks. Destroy them! But pay attention to the order!");
+    public AudioSource ass;
+
+    public override void Awake()
+    {
+        base.Awake();
+    }
+    async public override void PlayIntroduction()
+    {
+        ass.Play();
         level.TraceBlocks();
+        await Task.Delay((int)level.GeSaStaTi() * 1000);
+        player.StartSabering();
     }
 
     async public override void FinishedLevel()

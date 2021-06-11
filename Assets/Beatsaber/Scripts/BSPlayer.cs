@@ -15,14 +15,13 @@ public class BSPlayer : MonoBehaviour
 
     public BSGamemanager1 gamemanager;
 
-    private AudioSource hitAudio; 
+    public AudioSource hitAudio, missAudio; 
 
     void Awake()
     {
         upperHandle = GameObject.Find("Panto").GetComponent<UpperHandle>();
         upperHandle.FreeRotation(); 
 
-        hitAudio = gameObject.GetComponent<AudioSource>(); 
     }
 
     public void StartSabering()
@@ -43,10 +42,11 @@ public class BSPlayer : MonoBehaviour
     {
         transform.position = upperHandle.HandlePosition(transform.position);
 
-        if (sabering && sabering_start_time + level.block_sequence[current_index].time + time_window < Time.time)
+        if (sabering && sabering_start_time + level.block_sequence[current_index].time + time_window< Time.time)
         {
             Debug.Log(":( nooooo");
             current_index++;
+            //missAudio.Play();
             if (current_index == level.block_sequence.Count)
             {
                 gamemanager.FinishedLevel();

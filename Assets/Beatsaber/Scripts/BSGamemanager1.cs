@@ -12,7 +12,7 @@ public class BSGamemanager1 : MonoBehaviour
     public BSLevel level;
     public BSPlayer player;
 
-    void Awake()
+    public virtual void Awake()
     {
         speechOut = new SpeechOut();
     }
@@ -20,7 +20,6 @@ public class BSGamemanager1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player.time_window = 10f; 
         PlayIntroduction();
     }
 
@@ -49,6 +48,7 @@ public class BSGamemanager1 : MonoBehaviour
 
     async public virtual void FinishedLevel()
     {
+        level.it_handle.Free();
         if(level.block_count == 1){
             await Task.Delay(500);
             await speechOut.Speak("You made it!");
