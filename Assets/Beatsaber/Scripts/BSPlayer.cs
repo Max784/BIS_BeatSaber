@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DualPantoFramework;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BSPlayer : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class BSPlayer : MonoBehaviour
     public float time_window = 1.0f;
     public UpperHandle upperHandle;
 
-    public BSGamemanager1 gamemanager;
+    public BSGamemanagerFinal gamemanager;
 
     public AudioSource hitAudio, missAudio; 
+
+    public AudioClip[] collisionClip;
+    public AudioClip lastCollisionClip;
+
 
     void Awake()
     {
@@ -67,14 +72,31 @@ public class BSPlayer : MonoBehaviour
             {
                 Debug.Log("Yay");
                 level.block_count ++;
-                hitAudio.Play(); 
+                PlayHitClip(); 
                 current_index++;
                 if (current_index == level.block_sequence.Count)
                 {
-                    gamemanager.FinishedLevel();
                     sabering = false;
+                    gamemanager.FinishedLevel();
                 }
             }
         }
     }
+
+    public void PlayHitClip(){
+	    if (collisionClip.Length > 1){
+		    AudioClip randomClip;
+	
+		    do {
+			    randomClip = collisionClip[Random.Range(0,collisionClip.Length )];
+		    } while (randomClip == lastCollisionClip);
+		    lastCollisionClip = randomClip;
+            hitAudio.clip = lastCollisionClip; 
+		    hitAudio.Play();
+	    }
+ 
+        hitAudio.clip = collisionClip[0];
+		hitAudio.Play();
+    }
+
 }

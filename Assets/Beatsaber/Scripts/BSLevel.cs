@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class BSLevel : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     [Serializable]
     public class Block
     {
@@ -31,6 +31,66 @@ public class BSLevel : MonoBehaviour
     public List<GameObject> block_spawn_positions;
     public int prev_block_pos_index;
 
+
+     void Awake(){
+        it_handle = GameObject.Find("Panto").GetComponent<LowerHandle>();
+        it_handle.FreeRotation();    
+    }
+    void Start()
+    {
+        
+    }
+
+    public float GeSaStaTi()
+    {
+        return 5 * music_length / (number_of_bars * 2);
+    }
+
+    public void initializeFirstLevel(){
+        block_sequence.Clear();
+        Block block = new Block();
+        block.blockObject = block_spawn_positions[0];
+        block.time = 0; 
+        block_sequence.Add(block);
+
+        trace_start_time = Time.time;
+        tracing = true;
+    }
+
+    public void initializeSecondLevel(){
+        block_sequence.Clear();
+
+        Block block = new Block();
+        block.blockObject = block_spawn_positions[0];
+        block.time = 0; 
+
+        Block block2 = new Block();
+        block2.blockObject = block_spawn_positions[3];
+        block2.time = 0.5f;
+
+        block_sequence.Add(block);
+        block_sequence.Add(block2);
+
+        trace_start_time = Time.time;
+        tracing = true;
+    }
+    
+    
+    public void initializeFinalLevel()
+    {
+        trace_start_time = 0; 
+        current_index = 0;
+        block_count = 0;
+        music_length = 96;
+        number_of_bars = 48; 
+        start_delay = 1; 
+
+        generateRandomLevel();
+        trace_start_time = Time.time;
+        tracing = true;
+
+    }
+
     public void generateRandomLevel()
     {
         block_sequence.Clear();
@@ -53,30 +113,8 @@ public class BSLevel : MonoBehaviour
         }
     }
 
-    public float GeSaStaTi()
-    {
-        return 5 * music_length / (number_of_bars * 2);
-    }
-
-    public void TraceBlocks()
-    {
-        generateRandomLevel();
-        trace_start_time = Time.time;
-        tracing = true;
-        current_index = 0;
-        block_count = 0;
-    }
+   
     
-    void Awake(){
-        it_handle = GameObject.Find("Panto").GetComponent<LowerHandle>();
-        it_handle.FreeRotation();    
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (tracing)

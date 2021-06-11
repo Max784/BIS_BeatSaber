@@ -30,7 +30,7 @@ public class BSGamemanager1 : MonoBehaviour
         await Task.Delay(1000);
         speechOut.Speak("This is a block. You have to saber it!");
         await Task.Delay(500);
-        level.TraceBlocks();
+        //level.TraceBlocks();
 
     }
 

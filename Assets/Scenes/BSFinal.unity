@@ -409,11 +409,14 @@ MonoBehaviour:
   sabering_start_time: 0
   sabering: 0
   current_index: 0
-  time_window: 0.35
+  time_window: 1
   upperHandle: {fileID: 0}
-  gamemanager: {fileID: 0}
+  gamemanager: {fileID: 474128700}
   hitAudio: {fileID: 246167512}
   missAudio: {fileID: 246167513}
+  collisionClip:
+  - {fileID: 8300000, guid: 56a7d37477765774e8ade3e9f5d7edb8, type: 3}
+  lastCollisionClip: {fileID: 0}
 --- !u!82 &246167512
 AudioSource:
   m_ObjectHideFlags: 0
@@ -945,8 +948,6 @@ MonoBehaviour:
   block_sequence:
   - time: 0
     blockObject: {fileID: 1915444559}
-  - time: 0.5
-    blockObject: {fileID: 309561082}
   trace_start_time: 0
   current_index: 0
   block_count: 0
@@ -1413,11 +1414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199081147454446092, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: orthographic size
-      value: 22.39164
+      value: 11.477884
       objectReference: {fileID: 0}
     - target: {fileID: 826605487606422808, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: debug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 826605487606422808, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: overwriteDefaultPort
@@ -3476,7 +3477,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8839593422781233826}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 4
   m_OnValueChanged:
     m_PersistentCalls:
