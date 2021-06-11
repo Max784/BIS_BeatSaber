@@ -48,7 +48,8 @@ public class BSLevel : MonoBehaviour
         {
             if (Time.time > trace_start_time + block_sequence[current_index].time)
             {
-                it_handle.SwitchTo(block_sequence[current_index].blockObject);
+                it_handle.Free();
+                it_handle.MoveToPosition(block_sequence[current_index].blockObject.transform.position, 1.0f, false);
                 current_index++;
                 if (current_index == block_sequence.Count)
                 {
