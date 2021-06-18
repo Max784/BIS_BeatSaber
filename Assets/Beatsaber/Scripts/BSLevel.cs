@@ -22,7 +22,7 @@ public class BSLevel : MonoBehaviour
     public int block_count;
     public bool tracing;
     public LowerHandle it_handle;
-    public BSGamemanager1 gamemanager;
+    public BSGamemanagerFinal gamemanager;
 
     public float music_length;
     public int number_of_bars;
@@ -52,7 +52,6 @@ public class BSLevel : MonoBehaviour
         block.blockObject = block_spawn_positions[0];
         block.time = 0; 
         block_sequence.Add(block);
-
         trace_start_time = Time.time;
         tracing = true;
     }
@@ -70,9 +69,24 @@ public class BSLevel : MonoBehaviour
 
         block_sequence.Add(block);
         block_sequence.Add(block2);
-
+        
         trace_start_time = Time.time;
         tracing = true;
+    }
+
+    public void initializeThirdLevel()
+    {
+        trace_start_time = 0; 
+        current_index = 0;
+        block_count = 0;
+        music_length = 96;
+        number_of_bars = 48; 
+        start_delay = 1; 
+
+        generateRedundantLevel();
+        trace_start_time = Time.time;
+        tracing = true;
+
     }
     
     
@@ -89,6 +103,23 @@ public class BSLevel : MonoBehaviour
         trace_start_time = Time.time;
         tracing = true;
 
+    }
+
+    public void generateRedundantLevel()
+    {
+        int[] pos =  {1, 3, 0, 2};
+        block_sequence.Clear();
+        for (int i = 0; i < number_of_bars * 2; i++)
+        {
+            if (i % 8 > 3)
+            {
+                continue;
+            }
+            Block block = new Block();
+            block.blockObject = block_spawn_positions[pos[(i)%4]];
+            block.time = i * music_length / (number_of_bars * 2) + start_delay;
+            block_sequence.Add(block);
+        }
     }
 
     public void generateRandomLevel()

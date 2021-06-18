@@ -409,13 +409,15 @@ MonoBehaviour:
   sabering_start_time: 0
   sabering: 0
   current_index: 0
+  hit_streak: 0
+  score: 0
   time_window: 1
   upperHandle: {fileID: 0}
   gamemanager: {fileID: 474128700}
   hitAudio: {fileID: 246167512}
   missAudio: {fileID: 246167513}
   collisionClip:
-  - {fileID: 8300000, guid: 56a7d37477765774e8ade3e9f5d7edb8, type: 3}
+  - {fileID: 8300000, guid: d77489e075e078146962c4cfc94031e5, type: 3}
   lastCollisionClip: {fileID: 0}
 --- !u!82 &246167512
 AudioSource:
@@ -427,7 +429,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 56a7d37477765774e8ade3e9f5d7edb8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 058c517d8def5814dbac7a2c8ae466bd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -724,6 +726,7 @@ MonoBehaviour:
   level: {fileID: 572409419}
   player: {fileID: 246167511}
   ass: {fileID: 474128709}
+  level_index: 0
 --- !u!82 &474128701
 AudioSource:
   m_ObjectHideFlags: 0
@@ -832,7 +835,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b869cde026df83244a6715742f761249, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.711
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1414,15 +1417,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199081147454446092, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: orthographic size
-      value: 11.477884
+      value: 10.56669
       objectReference: {fileID: 0}
     - target: {fileID: 826605487606422808, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: debug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 826605487606422808, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: overwriteDefaultPort
-      value: //.//COM5
+      value: //.//COM3
       objectReference: {fileID: 0}
     - target: {fileID: 826605487606422809, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: m_Name
@@ -1483,6 +1486,10 @@ PrefabInstance:
     - target: {fileID: 7742484942278137610, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8827900398297005970, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.6999817
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
@@ -3476,8 +3483,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8839593422781233825}
   m_HandleRect: {fileID: 8839593422781233826}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 4
   m_OnValueChanged:
     m_PersistentCalls:

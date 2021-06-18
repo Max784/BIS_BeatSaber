@@ -11,6 +11,8 @@ public class BSPlayer : MonoBehaviour
     public float sabering_start_time;
     public bool sabering;
     public int current_index;
+    public int hit_streak = 0; 
+    public float score = 0;
     public float time_window = 1.0f;
     public UpperHandle upperHandle;
 
@@ -50,6 +52,7 @@ public class BSPlayer : MonoBehaviour
         if (sabering && sabering_start_time + level.block_sequence[current_index].time + time_window< Time.time)
         {
             Debug.Log(":( nooooo");
+            hit_streak = 0; 
             current_index++;
             //missAudio.Play();
             if (current_index == level.block_sequence.Count)
@@ -71,32 +74,32 @@ public class BSPlayer : MonoBehaviour
             if (sabering_start_time + level.block_sequence[current_index].time - time_window < Time.time)
             {
                 Debug.Log("Yay");
+                hit_streak++; 
                 level.block_count ++;
                 PlayHitClip(); 
+                score += hit_streak;
                 current_index++;
                 if (current_index == level.block_sequence.Count)
                 {
                     sabering = false;
                     gamemanager.FinishedLevel();
                 }
+                if ((gamemanager.level_index == 3 || gamemanager.level_index == 4) && current_index % 4 == 0 && hit_streak >= 4) //das dritte Level soll beendet werden, wenn eine Sequenz von vier Blöcken am Stück getroffen wird. Deswegen dieser Sexy Code
+                {
+                    gamemanager.FinishedLevel();
+                    level.tracing = false; 
+                    sabering = false; 
+                }
             }
         }
     }
 
     public void PlayHitClip(){
-	    if (collisionClip.Length > 1){
-		    AudioClip randomClip;
-	
-		    do {
-			    randomClip = collisionClip[Random.Range(0,collisionClip.Length )];
-		    } while (randomClip == lastCollisionClip);
-		    lastCollisionClip = randomClip;
-            hitAudio.clip = lastCollisionClip; 
-		    hitAudio.Play();
-	    }
- 
-        hitAudio.clip = collisionClip[0];
+        if (hit_streak > 6){
+            hitAudio.pitch = 1.5f;
+        } else{
+            hitAudio.pitch = hit_streak/4f;
+        }
 		hitAudio.Play();
     }
-
 }
