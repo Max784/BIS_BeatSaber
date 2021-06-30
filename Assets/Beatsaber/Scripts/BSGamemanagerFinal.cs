@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 public class BSGamemanagerFinal : MonoBehaviour
 {
 
+    public enum lvl
+    {
+        Level1,
+        Level2,
+        Level3,
+        Level4,
+        LevelFinal
+    };
     public static class FadeAudioSource {
         public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
             {
@@ -23,7 +31,8 @@ public class BSGamemanagerFinal : MonoBehaviour
             yield break;
         }
     }
-    
+
+    public lvl level_selection;
     public SpeechOut speechOut;
     public BSLevel level;
     public BSPlayer player;
@@ -40,12 +49,24 @@ public class BSGamemanagerFinal : MonoBehaviour
 
     void Start()
     {
-        //PlayIntroduction();
-        //PlaySecondLevel(); 
-        
-        PlayThirdLevel();
-        //PlayFourthLevel(); 
-        //PlayFinalLevel();
+        switch (level_selection)
+        {
+            case lvl.Level1:
+                PlayIntroduction();
+                break;
+            case lvl.Level2:
+               PlaySecondLevel();
+                break;
+            case lvl.Level3:
+                PlayThirdLevel();
+                break;
+            case lvl.Level4:
+                PlayFourthLevel(); 
+                break;
+            case lvl.LevelFinal:
+                PlayFinalLevel();
+                break;
+        }
     }
 
     async public virtual void PlayIntroduction(){
