@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DualPantoFramework;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BSPlayer : MonoBehaviour
@@ -11,6 +12,7 @@ public class BSPlayer : MonoBehaviour
     public float sabering_start_time;
     public bool sabering;
     public int current_index;
+    public int current_dingdex;
     public int hit_streak = 0; 
     public float score = 0;
     public float time_window = 1.0f;
@@ -18,7 +20,8 @@ public class BSPlayer : MonoBehaviour
 
     public BSGamemanagerFinal gamemanager;
 
-    public AudioSource hitAudio, missAudio; 
+    public AudioSource hitAudio;
+    [FormerlySerializedAs("missAudio")] public AudioSource dingAudio; 
 
     public AudioClip[] collisionClip;
     public AudioClip lastCollisionClip;
@@ -36,6 +39,7 @@ public class BSPlayer : MonoBehaviour
         sabering = true;
         sabering_start_time = Time.time;
         current_index = 0;
+        current_dingdex = 0;
     }
     
     // Start is called before the first frame update
@@ -49,12 +53,16 @@ public class BSPlayer : MonoBehaviour
     {
         transform.position = upperHandle.HandlePosition(transform.position);
 
+        if (gamemanager.level_index >= 3 && current_dingdex <= current_index && sabering_start_time + level.block_sequence[current_index].time <= Time.time)
+        {
+            dingAudio.Play();
+            current_dingdex = current_index + 1;
+        }
         if (sabering && sabering_start_time + level.block_sequence[current_index].time + time_window< Time.time)
         {
             Debug.Log(":( nooooo");
             hit_streak = 0; 
             current_index++;
-            //missAudio.Play();
             if (current_index == level.block_sequence.Count)
             {
                 gamemanager.FinishedLevel();

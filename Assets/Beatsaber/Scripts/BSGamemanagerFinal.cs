@@ -123,10 +123,10 @@ public class BSGamemanagerFinal : MonoBehaviour
         await speechOut.Speak("Welcome to the third Level!");
         await speechOut.Speak("You must always remember four blocks from now on. Start sabering when the sequence ends. Try to do it on beat!");
 
+        ass.volume = 0.15f;
         ass.Play();
 
         level.initializeThirdLevel(); 
-        await Task.Delay(500);
         await Task.Delay((int)level.GeSaStaTi() * 1000);
         player.StartSabering();
     }
@@ -138,10 +138,10 @@ public class BSGamemanagerFinal : MonoBehaviour
         await speechOut.Speak("Welcome to the fourth Level!");
         await speechOut.Speak("The same as before, but now you really have to pay attention to the beat! ");
 
+        ass.volume = 0.15f;
         ass.Play();
 
         level.initializeThirdLevel(); 
-        await Task.Delay(500);
         await Task.Delay((int)level.GeSaStaTi() * 1000);
         player.StartSabering();
     }
@@ -150,6 +150,7 @@ public class BSGamemanagerFinal : MonoBehaviour
         player.time_window = 0.35f; 
         level_index = 5; 
 
+        ass.volume = 0.15f;
         ass.Play();
         level.initializeFinalLevel();
         await Task.Delay((int)level.GeSaStaTi() * 1000);
@@ -167,7 +168,7 @@ public class BSGamemanagerFinal : MonoBehaviour
                 FinishedLevelMessage(1);
                 break;
             case 2:
-                FinishedLevelMessage(2);
+                FinishedSecondLevelMessage(2);
                 break;
             case 3:
                 FinishedThirdLevelMessage();
@@ -195,21 +196,35 @@ public class BSGamemanagerFinal : MonoBehaviour
         if(level.current_index == number_of_blocks){
             await Task.Delay(500);
             await speechOut.Speak("You made it!");
+            //PlaySecondLevel();
         } else{
             await speechOut.Speak("You missed something!");
+            //PlayIntroduction();
+        }
+    }
+    async public void FinishedSecondLevelMessage(int number_of_blocks){
+      
+        if(level.current_index == number_of_blocks){
+            await Task.Delay(500);
+            await speechOut.Speak("You made it!");
+            //PlayThirdLevel();
+        } else{
+            await speechOut.Speak("You missed something!");
+            //PlaySecondLevel();
         }
     }
 
     async public void FinishedThirdLevelMessage(){
         await Task.Delay(500);
         await speechOut.Speak("Congratulations! You hit four blocks in a row!");
-       
-        
+        //PlayFourthLevel();
+
     }
 
     async public void FinishedFourthLevelMessage(){
         await Task.Delay(500);
         await speechOut.Speak("Congratulations! You are a true BeatSaber. Now you are ready for the real world! ");
+        //PlayFinalLevel();
        
         
     }

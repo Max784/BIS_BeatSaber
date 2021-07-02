@@ -409,13 +409,14 @@ MonoBehaviour:
   sabering_start_time: 0
   sabering: 0
   current_index: 0
+  current_dingdex: 0
   hit_streak: 0
   score: 0
   time_window: 1
   upperHandle: {fileID: 0}
   gamemanager: {fileID: 474128700}
   hitAudio: {fileID: 246167512}
-  missAudio: {fileID: 246167513}
+  dingAudio: {fileID: 246167513}
   collisionClip:
   - {fileID: 8300000, guid: d77489e075e078146962c4cfc94031e5, type: 3}
   lastCollisionClip: {fileID: 0}
@@ -525,7 +526,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d3805700c51e25c4aa393f2815114bd9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b051716f733b9514dae559dfbf76de64, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -723,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79f4a14bf9dffb49b585a676f314089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level_selection: 4
+  level_selection: 3
   level: {fileID: 572409419}
   player: {fileID: 246167511}
   ass: {fileID: 474128709}
@@ -836,7 +837,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b869cde026df83244a6715742f761249, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.711
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1418,7 +1419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199081147454446092, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: orthographic size
-      value: 12.373979
+      value: 25.560507
       objectReference: {fileID: 0}
     - target: {fileID: 826605487606422808, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: debug
@@ -3484,8 +3485,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8839593422781233825}
   m_HandleRect: {fileID: 8839593422781233826}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 4
   m_OnValueChanged:
     m_PersistentCalls:

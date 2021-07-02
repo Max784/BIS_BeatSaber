@@ -43,7 +43,7 @@ public class BSLevel : MonoBehaviour
 
     public float GeSaStaTi()
     {
-        return 5 * music_length / (number_of_bars * 2);
+        return start_delay + 4 * music_length / (number_of_bars * 2);
     }
 
     public void initializeFirstLevel(){
