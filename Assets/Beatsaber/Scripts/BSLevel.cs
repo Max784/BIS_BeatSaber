@@ -105,6 +105,19 @@ public class BSLevel : MonoBehaviour
 
     }
 
+    public void initializeLeSeNaArrrrrr(){
+        trace_start_time = 0; 
+        current_index = 0;
+        block_count = 0;
+        music_length = 228;
+        number_of_bars = 116; 
+        start_delay = 0; 
+
+        generateRandomLevel();
+        trace_start_time = Time.time;
+        tracing = true;
+    }
+
     public void generateRedundantLevel()
     {
         int[] pos =  {1, 3, 0, 2};

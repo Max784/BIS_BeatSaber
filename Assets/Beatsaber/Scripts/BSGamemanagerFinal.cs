@@ -14,7 +14,9 @@ public class BSGamemanagerFinal : MonoBehaviour
         Level2,
         Level3,
         Level4,
-        LevelFinal
+        LevelFinal,
+
+        LevelSevenNationArmy
     };
     public static class FadeAudioSource {
         public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
@@ -38,6 +40,8 @@ public class BSGamemanagerFinal : MonoBehaviour
     public BSPlayer player;
     
     public AudioSource ass;
+
+    public AudioClip sevenNationArmy; 
 
     public int level_index; 
 
@@ -65,6 +69,9 @@ public class BSGamemanagerFinal : MonoBehaviour
                 break;
             case lvl.LevelFinal:
                 PlayFinalLevel();
+                break;
+            case lvl.LevelSevenNationArmy:
+                PlayLeSeNaArrrrrr();
                 break;
         }
     }
@@ -155,6 +162,19 @@ public class BSGamemanagerFinal : MonoBehaviour
         level.initializeFinalLevel();
         await Task.Delay((int)level.GeSaStaTi() * 1000);
         player.StartSabering();
+    }
+
+    async void PlayLeSeNaArrrrrr(){
+        player.time_window = 0.35f; 
+        level_index = 5; 
+        ass.clip = sevenNationArmy; 
+
+        ass.volume = 0.15f;
+        ass.Play();
+        level.initializeLeSeNaArrrrrr();
+        await Task.Delay((int)level.GeSaStaTi() * 1000);
+        player.StartSabering();
+
     }
 
     public void FinishedLevel()
