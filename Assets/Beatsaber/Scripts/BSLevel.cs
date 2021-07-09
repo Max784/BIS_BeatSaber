@@ -43,7 +43,9 @@ public class BSLevel : MonoBehaviour
 
     public float GeSaStaTi()
     {
-        return start_delay + 4 * music_length / (number_of_bars * 2);
+        float t = 5 * music_length / (number_of_bars * 2);
+        Debug.Log("GeSaStaTi: " + t);
+        return t;
     }
 
     public void initializeFirstLevel(){
@@ -81,7 +83,7 @@ public class BSLevel : MonoBehaviour
         block_count = 0;
         music_length = 96;
         number_of_bars = 48; 
-        start_delay = 1; 
+        start_delay = 0.5f; 
 
         generateRedundantLevel();
         trace_start_time = Time.time;
@@ -109,9 +111,9 @@ public class BSLevel : MonoBehaviour
         trace_start_time = 0; 
         current_index = 0;
         block_count = 0;
-        music_length = 228;
+        music_length = 225;// 226 zu langsam
         number_of_bars = 116; 
-        start_delay = 0; 
+        start_delay = 1.2f; 
 
         generateRandomLevel();
         trace_start_time = Time.time;

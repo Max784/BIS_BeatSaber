@@ -724,10 +724,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79f4a14bf9dffb49b585a676f314089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level_selection: 3
+  level_selection: 5
   level: {fileID: 572409419}
   player: {fileID: 246167511}
   ass: {fileID: 474128709}
+  sevenNationArmy: {fileID: 8300000, guid: b037399803a03264a8c4c472f6febaff, type: 3}
   level_index: 0
 --- !u!82 &474128701
 AudioSource:
@@ -1419,7 +1420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199081147454446092, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: orthographic size
-      value: 25.560507
+      value: 33.619953
       objectReference: {fileID: 0}
     - target: {fileID: 826605487606422808, guid: f08d327e9fb42f94d97ba9d1d226d418, type: 3}
       propertyPath: debug
@@ -3485,8 +3486,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8839593422781233825}
   m_HandleRect: {fileID: 8839593422781233826}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 4
   m_OnValueChanged:
     m_PersistentCalls:

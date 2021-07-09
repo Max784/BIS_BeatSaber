@@ -169,7 +169,7 @@ public class BSGamemanagerFinal : MonoBehaviour
         level_index = 5; 
         ass.clip = sevenNationArmy; 
 
-        ass.volume = 0.15f;
+        ass.volume = 0.45f;
         ass.Play();
         level.initializeLeSeNaArrrrrr();
         await Task.Delay((int)level.GeSaStaTi() * 1000);
